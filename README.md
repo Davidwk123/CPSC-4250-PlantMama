@@ -2,7 +2,7 @@
 
 A new Flutter project.
 
-Developers:
+## Developers:
 - Blaise Ntiranyibagira
 
 ## Getting Started
