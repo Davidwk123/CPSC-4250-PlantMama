@@ -2,6 +2,9 @@
 
 A new Flutter project.
 
+Developers:
+- Blaise Ntiranyibagira
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
