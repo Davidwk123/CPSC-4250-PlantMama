@@ -19,7 +19,7 @@ class _AddPlantFormState extends State<AddPlantForm> {
   final _locationController  = TextEditingController(text:null);
   final _lightingController  = TextEditingController(text:null);
   final _plantBoughtController  = TextEditingController(text:null);
-  
+  late var _profilePicture;
   String? _validateTitle(String? title) {
     if(title == null || title.isEmpty) {
       return 'Please fill in a name.';
@@ -60,7 +60,8 @@ class _AddPlantFormState extends State<AddPlantForm> {
         _speciesontroller.text,
         _locationController.text,
         _lightingController.text,
-        _plantBoughtController.text
+        _plantBoughtController.text as DateTime,
+          _profilePicture
       );
       widget.plantViewModel.addPlant(plant);
       _formKey.currentState!.reset();
@@ -80,7 +81,7 @@ class _AddPlantFormState extends State<AddPlantForm> {
           ),
            TextFormField(
             decoration: const InputDecoration(labelText: 'Species'),
-            controller: -_speciesontroller,
+            controller: _speciesontroller,
             validator: _validateSpecies,
           ),
            TextFormField(
