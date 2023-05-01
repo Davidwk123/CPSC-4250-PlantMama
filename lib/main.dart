@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:plant_mama/home_page.dart';
 import 'package:plant_mama/plant_gallery_page.dart';
 
 void main() {
@@ -12,7 +13,7 @@ final router = GoRouter(
     GoRoute(
       path: '/home',
       name: 'home',
-      builder: (context, _) => const PlantGalleryPage(),
+      builder: (context, _) => const HomePage(),
     )
   ],
 );
