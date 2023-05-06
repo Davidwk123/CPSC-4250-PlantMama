@@ -19,7 +19,7 @@ class _AddPlantFormState extends State<AddPlantForm> {
   final _locationController  = TextEditingController(text:null);
   final _lightingController  = TextEditingController(text:null);
   final _plantBoughtController  = TextEditingController(text:null);
-  late var _profilePicture;
+  // late var _profilePicture= "string";
   String? _validateTitle(String? title) {
     if(title == null || title.isEmpty) {
       return 'Please fill in a name.';
@@ -34,12 +34,12 @@ class _AddPlantFormState extends State<AddPlantForm> {
     return null;
   }
 
-    String? _validateLocation(String? location) {
-        if(location == null || location.isEmpty) {
-        return 'Please fill in a location.';
-        }
-        return null;
-    }
+  String? _validateLocation(String? location) {
+      if(location == null || location.isEmpty) {
+      return 'Please fill in a location.';
+      }
+      return null;
+  }
 
     String? _validateLighting(String? lighting) {
     if(lighting == null || lighting.isEmpty) {
@@ -60,8 +60,8 @@ class _AddPlantFormState extends State<AddPlantForm> {
         _speciesontroller.text,
         _locationController.text,
         _lightingController.text,
-        _plantBoughtController.text as DateTime,
-          _profilePicture
+        DateTime.parse(_plantBoughtController.text),
+        // _profilePicture,
       );
       widget.plantViewModel.addPlant(plant);
       _formKey.currentState!.reset();

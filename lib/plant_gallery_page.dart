@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plant_mama/plant_result.dart';
 import 'package:provider/provider.dart';
 import 'package:plant_mama/plant_view_model.dart';
 
@@ -13,24 +14,13 @@ class _PlantGalleryPageState extends State<PlantGalleryPage> {
   @override
   Widget build(BuildContext context) {
     final plantViewModel = context.watch<PlantViewModel>();
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Plant Gallery'),
-        ),
-      body: plantViewModel.numberOfPlants == 0
-          ? const Center(child: Text('No plants'))
-          : ListView.builder(
-        itemBuilder: (context, index) {
-          // build your list item here
-        },
+    return plantViewModel.numberOfPlants == 0
+        ? const Center(child: Text('No plants'))
+        : ListView.separated(
+        itemBuilder: (context, index) => PlantResult(index: index),
+        separatorBuilder: (context, index) => const SizedBox(height: 12),
         itemCount: plantViewModel.numberOfPlants,
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-        },
-        tooltip: 'Increment Counter',
-        child: const Icon(Icons.add),
-      ),
+      // build your list item here
     );
   }
 }
