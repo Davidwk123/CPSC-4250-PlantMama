@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:plant_mama/home_page.dart';
-import 'package:plant_mama/plant_gallery_page.dart';
+import 'package:plant_mama/plant_view_model.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,12 +25,16 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-      ),
-      routerConfig: router,
+    return ChangeNotifierProvider(
+        create: (context) => PlantViewModel(),
+        child: MaterialApp.router(
+          title: 'Flutter Demo',
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            primarySwatch: Colors.green,
+          ),
+          routerConfig: router,
+        )
     );
   }
 }

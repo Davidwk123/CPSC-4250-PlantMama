@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:plant_mama/add_plant_form.dart';
+import 'package:plant_mama/plant_gallery_page.dart';
+import 'package:plant_mama/plant_view_model.dart';
+import 'package:provider/provider.dart';
 // Import GalleryPage and MyCollectionPage widgets
 // import 'gallery_page.dart';
 // import 'my_collection_page.dart';
@@ -13,12 +17,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
 
-  static List<Widget> _pages = <Widget>[
-    const Home(),
-    //const GalleryPage(),
-    //const MyCollectionPage(),
-  ];
-
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -27,11 +25,18 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final plantViewModel = context.watch<PlantViewModel>();
+    List<Widget> pages = <Widget>[
+      const Home(),
+      const PlantGalleryPage(),
+      AddPlantForm(plantViewModel: plantViewModel)
+
+    ];
     return Scaffold(
       appBar: AppBar(
-        title: Text('Plant Mama'),
+        title: const Text('Plant Mama'),
       ),
-      body: _pages[_selectedIndex],
+      body: pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -43,8 +48,8 @@ class _HomePageState extends State<HomePage> {
             label: 'Gallery',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.collections),
-            label: 'My Collection',
+            icon: Icon(Icons.add),
+            label: 'Plant Form',
           ),
         ],
         currentIndex: _selectedIndex,
