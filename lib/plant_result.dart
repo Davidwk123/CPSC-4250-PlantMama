@@ -10,15 +10,26 @@ class PlantResult extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     final plantViewModel = context.watch<PlantViewModel>();
-    List<Text> children = [
-      Text(
-          plantViewModel.getName(index),
-          style: Theme.of(context).textTheme.headlineSmall
+    List<Widget> children = [
+      Row(
+        children: [
+          Image.file(
+            plantViewModel.plants[index].picture,
+            width: 100,
+            height: 100,
+          ),
+          const SizedBox(width: 8), // Add some spacing between the image and text
+          Text(
+            plantViewModel.plants[index].name,
+            style: Theme.of(context).textTheme.headlineSmall,
+          ),
+        ],
       ),
-      Text(plantViewModel.getSpecies(index)),
-      Text(plantViewModel.getLocation(index)),
-      Text(plantViewModel.getLighting(index)),
-      Text(DateFormat('MMM dd, yyyy hh:mm a').format(plantViewModel.getPlantBought(index))),
+      Text(plantViewModel.plants[index].species),
+      Text(plantViewModel.plants[index].location),
+      Text(plantViewModel.plants[index].lighting),
+      // test date 2023-05-06
+      Text(DateFormat('MMM dd, yyyy hh:mm a').format(plantViewModel.plants[index].plantBought)),
     ];
 
     return Card(

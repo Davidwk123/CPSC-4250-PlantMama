@@ -1,4 +1,7 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 import 'plant_profile.dart';
 import 'plant_view_model.dart';
 
@@ -15,11 +18,26 @@ class AddPlantForm extends StatefulWidget {
 class _AddPlantFormState extends State<AddPlantForm> {
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController(text:null);
-  final _speciesontroller = TextEditingController(text:null);
+  final _speciesController = TextEditingController(text:null);
   final _locationController  = TextEditingController(text:null);
   final _lightingController  = TextEditingController(text:null);
   final _plantBoughtController  = TextEditingController(text:null);
-  // late var _profilePicture= "string";
+  File?  _profilePicture;
+
+  _getFromCamera() async {
+    try {
+      final image = await ImagePicker().pickImage(
+          source: ImageSource.camera);
+      if (image == null) return;
+      final imageTemp = File(image.path);
+      setState(() {
+        _profilePicture = imageTemp;
+      });
+    } on PlatformException catch (e){
+      print('Failed to pick image: $e');
+    }
+  }
+
   String? _validateTitle(String? title) {
     if(title == null || title.isEmpty) {
       return 'Please fill in a name.';
@@ -57,52 +75,75 @@ class _AddPlantFormState extends State<AddPlantForm> {
     if(_formKey.currentState!.validate()){
       final plant = PlantProfile(
         _nameController.text,
-        _speciesontroller.text,
+        _speciesController.text,
         _locationController.text,
         _lightingController.text,
         DateTime.parse(_plantBoughtController.text),
-        // _profilePicture,
+        _profilePicture!,
       );
       widget.plantViewModel.addPlant(plant);
       _formKey.currentState!.reset();
+      _nameController.clear();
+      _speciesController.clear();
+      _locationController.clear();
+      _lightingController.clear();
+      _plantBoughtController.clear();
+      setState(() {
+        _profilePicture = null;
+      });
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Column(
-        children: [
-          TextFormField(
-            decoration: const InputDecoration(labelText: 'Title'),
-            controller: _nameController,
-            validator: _validateTitle,
-          ),
-           TextFormField(
-            decoration: const InputDecoration(labelText: 'Species'),
-            controller: _speciesontroller,
-            validator: _validateSpecies,
-          ),
-           TextFormField(
-            decoration: const InputDecoration(labelText: 'Location'),
-            controller: _locationController,
-            validator: _validateLocation,
-          ),
+    return SingleChildScrollView( // Wrap with SingleChildScrollView
+      child: Form(
+        key: _formKey,
+        child: Column(
+          children: [
+            _profilePicture != null
+                ? Image.file(
+              _profilePicture!,
+              width: 100,
+              height: 100,
+              fit: BoxFit.cover,
+            )
+                : const Icon(Icons.image_not_supported, size: 100),
+            ElevatedButton(
+              onPressed: _getFromCamera,
+              child: const Text('Take Photo'),
+            ),
             TextFormField(
-            decoration: const InputDecoration(labelText: 'Lighting'),
-            controller: _lightingController,
-            validator: _validateLighting,
-          ),
+              decoration: const InputDecoration(labelText: 'Title'),
+              controller: _nameController,
+              validator: _validateTitle,
+            ),
             TextFormField(
-            decoration: const InputDecoration(labelText: 'Date Bought'),
-            controller: _plantBoughtController,
-            validator: _validateDate,
-          ),
-          ElevatedButton(
+              decoration: const InputDecoration(labelText: 'Species'),
+              controller: _speciesController,
+              validator: _validateSpecies,
+            ),
+            TextFormField(
+              decoration: const InputDecoration(labelText: 'Location'),
+              controller: _locationController,
+              validator: _validateLocation,
+            ),
+            TextFormField(
+              decoration: const InputDecoration(labelText: 'Lighting'),
+              controller: _lightingController,
+              validator: _validateLighting,
+            ),
+            TextFormField(
+              decoration: const InputDecoration(labelText: 'Date Bought'),
+              controller: _plantBoughtController,
+              validator: _validateDate,
+            ),
+            ElevatedButton(
               onPressed: _addPlant,
-              child: const Text('Add Plant'))
-        ],
+              child: const Text('Add Plant'),
+            ),
+          ],
+        ),
       ),
     );
   }
