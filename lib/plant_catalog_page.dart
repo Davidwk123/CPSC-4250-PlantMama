@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:plant_mama/add_plant_form.dart';
-import 'package:plant_mama/plant_gallery_page.dart';
+import 'package:http/http.dart' as http;
+import 'package:plant_mama/plant_catalog_list.dart';
+import 'package:plant_mama/plant_profile.dart';
 import 'package:plant_mama/plant_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -12,13 +13,29 @@ class PlantCatalogPage extends StatefulWidget {
 }
 
 class _PlantCatalogPageState extends State<PlantCatalogPage> {
-  final _formKey = GlobalKey<FormState>();
-  final _nameController = TextEditingController(text:null);
+  //final _formKey = GlobalKey<FormState>();
 
+  final _nameController = TextEditingController();
+  String plantURL = "";
 
+  _plantSearch() {
+    String searchTerm = _nameController.text;
+    plantURL = "https://perenual.com/api/species-list?key=sk-fC7m645ec1f6613b1786&q=$searchTerm";
+    //print(plantURL);
+  }
 
+  Future<void> _fetchPlants(PlantViewModel plantViewModel) async {
+    try {
+      final response = await http.get(Uri.parse(plantURL));
+      List<PlantProfile> listCatalog = plantViewModel.plantCatalogFromJson(response.body);
+      plantViewModel.addCatalog(listCatalog);
+      //print(listCatalog[0].picture);
+      //for (var plant in plantViewModel.catalog){print(plant.name);}
+    }catch (e) {return;}
+  }
   @override
   Widget build(BuildContext context) {
+    final plantViewModel = context.watch<PlantViewModel>();
     return Column(
       children: [
         Padding(
@@ -28,17 +45,24 @@ class _PlantCatalogPageState extends State<PlantCatalogPage> {
               border: const OutlineInputBorder(),
               hintText: 'Enter a search term',
               suffixIcon: IconButton(
-                onPressed: () {_nameController.clear();},
+                onPressed: () {
+                  _nameController.clear();
+                  plantViewModel.clearCatalog();
+                  },
                 icon: const Icon(Icons.clear)
               ),
               prefixIcon: IconButton(
                 icon: const Icon(Icons.search),
-                onPressed: () {},
+                onPressed: () {
+                  _plantSearch();
+                  _fetchPlants(plantViewModel);
+                  },
               ),
             ),
             controller: _nameController,
           )
         ),
+        const Expanded(child: PlantCatalogList(),)
       ],
     );
   }

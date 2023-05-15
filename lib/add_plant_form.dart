@@ -33,9 +33,7 @@ class _AddPlantFormState extends State<AddPlantForm> {
       setState(() {
         _profilePicture = imageTemp;
       });
-    } on PlatformException catch (e){
-      print('Failed to pick image: $e');
-    }
+    } on PlatformException catch (e){return;}
   }
 
   String? _validateTitle(String? title) {

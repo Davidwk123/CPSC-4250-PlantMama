@@ -1,38 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 import 'package:plant_mama/plant_view_model.dart';
+import 'package:provider/provider.dart';
 
-class PlantResult extends StatelessWidget{
+class PlantCatalogResult extends StatelessWidget {
   final int index;
-  const PlantResult({super.key, required this.index});
+  const PlantCatalogResult({super.key, required this.index});
 
   @override
   Widget build(BuildContext context) {
     final plantViewModel = context.watch<PlantViewModel>();
+    final plantURL = plantViewModel.catalog[index].picture.path;
     List<Widget> children = [
       Row(
         children: [
-          Image.file(
-            plantViewModel.plants[index].picture,
+          Image.network(
+            plantURL,
             width: 100,
             height: 100,
+            errorBuilder: (context, error, stackTrace) {
+              return Image.asset(
+                'assets/placeholder_image.png',
+                width: 100,
+                height: 100,
+              );
+            },
           ),
           const SizedBox(width: 8), // Add some spacing between the image and text
           Flexible(
             child: Text(
-              plantViewModel.plants[index].name,
+              plantViewModel.catalog[index].name,
               style: Theme.of(context).textTheme.headlineSmall,
               overflow: TextOverflow.ellipsis, // Truncate text with ellipsis (...) if it overflows
             ),
           ),
         ],
       ),
-      Text(plantViewModel.plants[index].species),
-      Text(plantViewModel.plants[index].location),
-      Text(plantViewModel.plants[index].lighting),
+      Text(plantViewModel.catalog[index].species),
+      Text(plantViewModel.catalog[index].location),
+      Text(plantViewModel.catalog[index].lighting),
       // test date 2023-05-06
-      Text(DateFormat('MMM dd, yyyy hh:mm a').format(plantViewModel.plants[index].plantBought)),
+      Text(DateFormat('MMM dd, yyyy hh:mm a').format(plantViewModel.catalog[index].plantBought)),
     ];
 
     return Card(
@@ -54,3 +62,4 @@ class PlantResult extends StatelessWidget{
     );
   }
 }
+

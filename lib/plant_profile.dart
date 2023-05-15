@@ -13,21 +13,23 @@ class PlantProfile {
 
   factory PlantProfile.fromMap(Map<String, dynamic> json){
     return PlantProfile(
-        json['data']['common_name'],
-        json['data']['scientific_name'],
+        json['common_name'],
+        json['scientific_name'],
         "N/A",
-        json['data']['sunlight'],
+        json['sunlight'],
         DateTime(0,0,0),
-        json['data']['default_image']['thumbnail']);
+        json['default_image']['thumbnail']);
   }
 
   factory PlantProfile.fromJson(Map<String, dynamic> json){
+    //print(json['sunlight'].join(,));
     return PlantProfile(
-        json['data']['common_name'],
-        json['data']['scientific_name'],
+        json['common_name'],
+        json['scientific_name'].join(', '),
         "N/A",
-        json['data']['sunlight'],
+        json['sunlight'].join(', '),
         DateTime(0,0,0),
-        json['data']['default_image']['thumbnail']);
+        File(json['default_image']['thumbnail'])
+    );
   }
 }
