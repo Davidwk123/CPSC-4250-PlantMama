@@ -20,10 +20,10 @@ class PlantCatalogResult extends StatelessWidget {
             width: 100,
             height: 100,
             errorBuilder: (context, error, stackTrace) {
-              return Image.asset(
-                'assets/placeholder_image.png',
-                width: 100,
-                height: 100,
+              return const Icon(
+                Icons.broken_image,
+                size: 100,
+                color: Colors.grey,
               );
             },
           ),

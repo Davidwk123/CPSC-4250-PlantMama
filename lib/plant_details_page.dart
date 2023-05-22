@@ -24,10 +24,17 @@ class PlantDetailPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch, // Make column stretch in width
                 children: <Widget>[
-                  Image.file(
-                    plant.picture,
+                  Image.network(
+                    plant.picture.path,
                     width: 100,
                     height: 100,
+                    errorBuilder: (context, error, stackTrace) {
+                      return const Icon(
+                        Icons.broken_image,
+                        size: 100,
+                        color: Colors.grey,
+                      );
+                    },
                   ),
                   const SizedBox(width: 8),
                   Text(plant.species),

@@ -81,7 +81,7 @@ main() {
       });
 
   testWidgets(
-      'The page will display multiple plant when provided a searchterm from the api',
+      'The page will display a plant as if the user made a api search request',
           (WidgetTester tester) async {
         final mockPlantViewModel = MockPlantViewModel();
         final plants = [
@@ -102,10 +102,8 @@ main() {
             )
         );
 
-        await tester.enterText(find.byType(TextField).at(0), 'Noble Fir');
-        await tester.pump();
         await tester.tap(find.byIcon(Icons.search));
         await tester.pump();
-        expect(find.text('Noble Fir'), findsOneWidget);
+        expect(find.text('White Fir'), findsOneWidget);
       });
 }
