@@ -20,7 +20,7 @@ class _PlantCatalogPageState extends State<PlantCatalogPage> {
 
   _plantSearch() {
     String searchTerm = _nameController.text;
-    plantURL = "https://perenual.com/api/species-list?key=sk-fC7m645ec1f6613b1786&q=$searchTerm";
+    plantURL = "https://perenual.com/api/species-list?key=sk-fC7m645ec1f6613b1786&page=1";
     //print(plantURL);
   }
 

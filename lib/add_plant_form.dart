@@ -132,7 +132,7 @@ class _AddPlantFormState extends State<AddPlantForm> {
               validator: _validateLighting,
             ),
             TextFormField(
-              decoration: const InputDecoration(labelText: 'Date Bought'),
+              decoration: const InputDecoration(labelText: 'Date Bought (yyyy-mm-dd)'),
               controller: _plantBoughtController,
               validator: _validateDate,
             ),

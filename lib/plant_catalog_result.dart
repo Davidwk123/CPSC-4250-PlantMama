@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:plant_mama/plant_view_model.dart';
 import 'package:provider/provider.dart';
+import 'plant_details_page.dart';
 
 class PlantCatalogResult extends StatelessWidget {
   final int index;
@@ -43,20 +44,33 @@ class PlantCatalogResult extends StatelessWidget {
       Text(DateFormat('MMM dd, yyyy hh:mm a').format(plantViewModel.catalog[index].plantBought)),
     ];
 
-    return Card(
-      margin: const EdgeInsets.all(12),
-      child: Padding(
-        padding: const EdgeInsets.all(8),
-        child: Column(
-          children: [
-            ListView.separated(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: children.length,
-              itemBuilder: (context, index) => children[index],
-              separatorBuilder: (context, index) => const SizedBox(height: 24),
-            ),
-          ],
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => PlantDetailPage(plant: plantViewModel.catalog[index]),
+            // Here, 'PlantDetailPage' is the new page which will show the details of the plant.
+            // You have to create this page and make sure to add a parameter to the constructor
+            // which will accept the plant you are passing.
+          ),
+        );
+      },
+      child: Card(
+        margin: const EdgeInsets.all(12),
+        child: Padding(
+          padding: const EdgeInsets.all(8),
+          child: Column(
+            children: [
+              ListView.separated(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: children.length,
+                itemBuilder: (context, index) => children[index],
+                separatorBuilder: (context, index) => const SizedBox(height: 24),
+              ),
+            ],
+          ),
         ),
       ),
     );

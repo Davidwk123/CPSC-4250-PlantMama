@@ -22,6 +22,10 @@ class PlantViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  PlantProfile getPlant(int index) {
+    return plants[index];
+  }
+
   List<PlantProfile> plantCatalogFromJson(String str) {
     final List<dynamic> parsed = jsonDecode(str)['data'];
     // parsed.forEach((element) {print(element);});
