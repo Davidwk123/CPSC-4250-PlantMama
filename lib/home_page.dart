@@ -60,108 +60,108 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          PlantSection(title: 'Explore', plants: explorePlants),
-          PlantSection(title: 'Featured Plants', plants: featuredPlants),
-          PlantSection(title: 'Recommended Plants', plants: recommendedPlants),
-        ],
-      ),
-    );
-  }
-}
-
-class PlantSection extends StatelessWidget {
-  final String title;
-  final List<String> plants;
-
-  const PlantSection({required this.title, required this.plants, Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            title,
-            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(height: 10),
-          GridView.builder(
-            itemCount: plants.length,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              crossAxisSpacing: 16,
-              mainAxisSpacing: 16,
-              childAspectRatio: 2,
-            ),
-            itemBuilder: (BuildContext context, int index) {
-              return PlantCard(plant: plants[index]);
-            },
-          ),
-          const SizedBox(height: 20),
-        ],
-      ),
-    );
-  }
-}
-
-
-class PlantCard extends StatelessWidget {
-  final String plant;
-
-  const PlantCard({required this.plant, Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: SizedBox(
-        width: 150,
-        child: Card(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-          elevation: 4,
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Center(child: Text(plant)),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-final List<String> explorePlants = [
-  'Explore Plant 1',
-  'Explore Plant 2',
-  'Explore Plant 3',
-  'Explore Plant 4',
-  'Explore Plant 5',
-];
-
-final List<String> featuredPlants = [
-  'Explore Plant 1',
-  'Explore Plant 2',
-  'Explore Plant 3',
-  'Explore Plant 4',
-  'Explore Plant 5',
-];
-
-final List<String> recommendedPlants = [
-  'Explore Plant 1',
-  'Explore Plant 2',
-  'Explore Plant 3',
-  'Explore Plant 4',
-  'Explore Plant 5',
-];
+// class Home extends StatelessWidget {
+//   const Home({Key? key}) : super(key: key);
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return SingleChildScrollView(
+//       child: Column(
+//         crossAxisAlignment: CrossAxisAlignment.start,
+//         children: [
+//           PlantSection(title: 'Explore', plants: explorePlants),
+//           PlantSection(title: 'Featured Plants', plants: featuredPlants),
+//           PlantSection(title: 'Recommended Plants', plants: recommendedPlants),
+//         ],
+//       ),
+//     );
+//   }
+// }
+//
+// class PlantSection extends StatelessWidget {
+//   final String title;
+//   final List<String> plants;
+//
+//   const PlantSection({required this.title, required this.plants, Key? key}) : super(key: key);
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Padding(
+//       padding: const EdgeInsets.all(16),
+//       child: Column(
+//         crossAxisAlignment: CrossAxisAlignment.start,
+//         children: [
+//           Text(
+//             title,
+//             style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+//           ),
+//           const SizedBox(height: 10),
+//           GridView.builder(
+//             itemCount: plants.length,
+//             shrinkWrap: true,
+//             physics: const NeverScrollableScrollPhysics(),
+//             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+//               crossAxisCount: 2,
+//               crossAxisSpacing: 16,
+//               mainAxisSpacing: 16,
+//               childAspectRatio: 2,
+//             ),
+//             itemBuilder: (BuildContext context, int index) {
+//               return PlantCard(plant: plants[index]);
+//             },
+//           ),
+//           const SizedBox(height: 20),
+//         ],
+//       ),
+//     );
+//   }
+// }
+//
+//
+// class PlantCard extends StatelessWidget {
+//   final String plant;
+//
+//   const PlantCard({required this.plant, Key? key}) : super(key: key);
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Padding(
+//       padding: const EdgeInsets.all(8.0),
+//       child: SizedBox(
+//         width: 150,
+//         child: Card(
+//           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+//           elevation: 4,
+//           child: Padding(
+//             padding: const EdgeInsets.all(16.0),
+//             child: Center(child: Text(plant)),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
+//
+// final List<String> explorePlants = [
+//   'Explore Plant 1',
+//   'Explore Plant 2',
+//   'Explore Plant 3',
+//   'Explore Plant 4',
+//   'Explore Plant 5',
+// ];
+//
+// final List<String> featuredPlants = [
+//   'Explore Plant 1',
+//   'Explore Plant 2',
+//   'Explore Plant 3',
+//   'Explore Plant 4',
+//   'Explore Plant 5',
+// ];
+//
+// final List<String> recommendedPlants = [
+//   'Explore Plant 1',
+//   'Explore Plant 2',
+//   'Explore Plant 3',
+//   'Explore Plant 4',
+//   'Explore Plant 5',
+// ];

@@ -61,7 +61,7 @@ main() {
           (WidgetTester tester) async {
         final mockPlantViewModel = MockPlantViewModel();
         final plants = [
-          PlantProfile('rose', 'rosa', 'garden', 'full sunlight', DateTime(2023, 5, 7), File('path/rose.jpg')),
+          PlantProfile.create('rose', 'rosa', 'garden', 'full sunlight', DateTime(2023, 5, 7), File('path/rose.jpg')),
         ];
         when(mockPlantViewModel.plants).thenReturn(plants);
         when(mockPlantViewModel.numberOfPlants).thenReturn(1);
@@ -85,7 +85,7 @@ main() {
           (WidgetTester tester) async {
         final mockPlantViewModel = MockPlantViewModel();
         final plants = [
-          PlantProfile('White Fir', 'abies concolor', 'N/A', 'Full sun, part shade', DateTime(2023, 5, 7), File('path/rose.jpg')),
+          PlantProfile.create('White Fir', 'abies concolor', 'N/A', 'Full sun, part shade', DateTime(2023, 5, 7), File('path/rose.jpg')),
         ];
         when(mockPlantViewModel.catalog).thenReturn(plants);
         when(mockPlantViewModel.numberOfPlants).thenReturn(0);
@@ -106,4 +106,34 @@ main() {
         await tester.pump();
         expect(find.text('White Fir'), findsOneWidget);
       });
+
+  testWidgets('Navigating to the plant details page',
+          (WidgetTester tester) async {
+        final mockPlantViewModel = MockPlantViewModel();
+        final plants = [
+          PlantProfile.create('White Fir', 'abies concolor', 'N/A', 'Full sun, part shade', DateTime(2023, 5, 7), File('path/rose.jpg')),
+        ];
+        when(mockPlantViewModel.plants).thenReturn(plants);
+        when(mockPlantViewModel.getPlant(0)).thenReturn(plants[0]);
+        when(mockPlantViewModel.numberOfPlants).thenReturn(1);
+        when(mockPlantViewModel.numberOfCatalogPlants).thenReturn(0);
+
+        await tester.pumpWidget(
+            ChangeNotifierProvider<PlantViewModel>.value(
+              value: mockPlantViewModel,
+              child: const MaterialApp(
+                home: Scaffold(
+                  body: PlantGalleryPage(),
+                ),
+              ),
+            )
+        );
+
+        await tester.tap(find.text('White Fir'));
+        await tester.pump();
+        // await tester.tap(find.text('White Fir'));
+        // await tester.pump();
+        expect(find.text('White Fir'), findsOneWidget);
+      });
+
 }

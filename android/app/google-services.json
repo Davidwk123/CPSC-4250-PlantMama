@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "844689647056",
+    "project_id": "plantmama-78fc4",
+    "storage_bucket": "plantmama-78fc4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:844689647056:android:b6c158f24e5fe67f9105d5",
+        "android_client_info": {
+          "package_name": "com.example.plant_mama"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "844689647056-8sen7sejonqkjioerjg81aphs2aogthd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKUjObmyXMQ361lTCXqAtEhfazWp0awhU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "844689647056-8sen7sejonqkjioerjg81aphs2aogthd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

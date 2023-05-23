@@ -17,6 +17,13 @@ class PlantResult extends StatelessWidget{
             plantViewModel.plants[index].picture,
             width: 100,
             height: 100,
+            errorBuilder: (context, error, stackTrace) {
+              return const Icon(
+                Icons.image_not_supported,
+                size: 100,
+                color: Colors.grey,
+              );
+            },
           ),
           const SizedBox(width: 8), // Add some spacing between the image and text
           Flexible(

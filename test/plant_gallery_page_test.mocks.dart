@@ -3,12 +3,14 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:ui' as _i4;
+import 'dart:async' as _i5;
+import 'dart:ui' as _i6;
 
-import 'package:flutter/material.dart' as _i5;
+import 'package:flutter/material.dart' as _i7;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:plant_mama/plant_profile.dart' as _i2;
-import 'package:plant_mama/plant_view_model.dart' as _i3;
+import 'package:plant_mama/firebase_service.dart' as _i2;
+import 'package:plant_mama/plant_profile.dart' as _i3;
+import 'package:plant_mama/plant_view_model.dart' as _i4;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -21,8 +23,19 @@ import 'package:plant_mama/plant_view_model.dart' as _i3;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakePlantProfile_0 extends _i1.SmartFake implements _i2.PlantProfile {
-  _FakePlantProfile_0(
+class _FakeFirebaseService_0 extends _i1.SmartFake
+    implements _i2.FirebaseService {
+  _FakeFirebaseService_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakePlantProfile_1 extends _i1.SmartFake implements _i3.PlantProfile {
+  _FakePlantProfile_1(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -34,18 +47,26 @@ class _FakePlantProfile_0 extends _i1.SmartFake implements _i2.PlantProfile {
 /// A class which mocks [PlantViewModel].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockPlantViewModel extends _i1.Mock implements _i3.PlantViewModel {
+class MockPlantViewModel extends _i1.Mock implements _i4.PlantViewModel {
   MockPlantViewModel() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  List<_i2.PlantProfile> get plants => (super.noSuchMethod(
-        Invocation.getter(#plants),
-        returnValue: <_i2.PlantProfile>[],
-      ) as List<_i2.PlantProfile>);
+  _i2.FirebaseService get firebaseService => (super.noSuchMethod(
+        Invocation.getter(#firebaseService),
+        returnValue: _FakeFirebaseService_0(
+          this,
+          Invocation.getter(#firebaseService),
+        ),
+      ) as _i2.FirebaseService);
   @override
-  set plants(List<_i2.PlantProfile>? _plants) => super.noSuchMethod(
+  List<_i3.PlantProfile> get plants => (super.noSuchMethod(
+        Invocation.getter(#plants),
+        returnValue: <_i3.PlantProfile>[],
+      ) as List<_i3.PlantProfile>);
+  @override
+  set plants(List<_i3.PlantProfile>? _plants) => super.noSuchMethod(
         Invocation.setter(
           #plants,
           _plants,
@@ -53,12 +74,12 @@ class MockPlantViewModel extends _i1.Mock implements _i3.PlantViewModel {
         returnValueForMissingStub: null,
       );
   @override
-  List<_i2.PlantProfile> get catalog => (super.noSuchMethod(
+  List<_i3.PlantProfile> get catalog => (super.noSuchMethod(
         Invocation.getter(#catalog),
-        returnValue: <_i2.PlantProfile>[],
-      ) as List<_i2.PlantProfile>);
+        returnValue: <_i3.PlantProfile>[],
+      ) as List<_i3.PlantProfile>);
   @override
-  set catalog(List<_i2.PlantProfile>? _catalog) => super.noSuchMethod(
+  set catalog(List<_i3.PlantProfile>? _catalog) => super.noSuchMethod(
         Invocation.setter(
           #catalog,
           _catalog,
@@ -81,15 +102,25 @@ class MockPlantViewModel extends _i1.Mock implements _i3.PlantViewModel {
         returnValue: false,
       ) as bool);
   @override
-  void addPlant(_i2.PlantProfile? plant) => super.noSuchMethod(
+  _i5.Future<void> getFirebasePlants() => (super.noSuchMethod(
+        Invocation.method(
+          #getFirebasePlants,
+          [],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+  @override
+  _i5.Future<void> addPlant(_i3.PlantProfile? plant) => (super.noSuchMethod(
         Invocation.method(
           #addPlant,
           [plant],
         ),
-        returnValueForMissingStub: null,
-      );
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
   @override
-  void addCatalog(List<_i2.PlantProfile>? catalogPlants) => super.noSuchMethod(
+  void addCatalog(List<_i3.PlantProfile>? catalogPlants) => super.noSuchMethod(
         Invocation.method(
           #addCatalog,
           [catalogPlants],
@@ -105,30 +136,30 @@ class MockPlantViewModel extends _i1.Mock implements _i3.PlantViewModel {
         returnValueForMissingStub: null,
       );
   @override
-  _i2.PlantProfile getPlant(int? index) => (super.noSuchMethod(
+  _i3.PlantProfile getPlant(int? index) => (super.noSuchMethod(
         Invocation.method(
           #getPlant,
           [index],
         ),
-        returnValue: _FakePlantProfile_0(
+        returnValue: _FakePlantProfile_1(
           this,
           Invocation.method(
             #getPlant,
             [index],
           ),
         ),
-      ) as _i2.PlantProfile);
+      ) as _i3.PlantProfile);
   @override
-  List<_i2.PlantProfile> plantCatalogFromJson(String? str) =>
+  List<_i3.PlantProfile> plantCatalogFromJson(String? str) =>
       (super.noSuchMethod(
         Invocation.method(
           #plantCatalogFromJson,
           [str],
         ),
-        returnValue: <_i2.PlantProfile>[],
-      ) as List<_i2.PlantProfile>);
+        returnValue: <_i3.PlantProfile>[],
+      ) as List<_i3.PlantProfile>);
   @override
-  void addListener(_i4.VoidCallback? listener) => super.noSuchMethod(
+  void addListener(_i6.VoidCallback? listener) => super.noSuchMethod(
         Invocation.method(
           #addListener,
           [listener],
@@ -136,7 +167,7 @@ class MockPlantViewModel extends _i1.Mock implements _i3.PlantViewModel {
         returnValueForMissingStub: null,
       );
   @override
-  void removeListener(_i4.VoidCallback? listener) => super.noSuchMethod(
+  void removeListener(_i6.VoidCallback? listener) => super.noSuchMethod(
         Invocation.method(
           #removeListener,
           [listener],
@@ -164,15 +195,15 @@ class MockPlantViewModel extends _i1.Mock implements _i3.PlantViewModel {
 /// A class which mocks [NavigatorObserver].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockNavigatorObserver extends _i1.Mock implements _i5.NavigatorObserver {
+class MockNavigatorObserver extends _i1.Mock implements _i7.NavigatorObserver {
   MockNavigatorObserver() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
   void didPush(
-    _i5.Route<dynamic>? route,
-    _i5.Route<dynamic>? previousRoute,
+    _i7.Route<dynamic>? route,
+    _i7.Route<dynamic>? previousRoute,
   ) =>
       super.noSuchMethod(
         Invocation.method(
@@ -186,8 +217,8 @@ class MockNavigatorObserver extends _i1.Mock implements _i5.NavigatorObserver {
       );
   @override
   void didPop(
-    _i5.Route<dynamic>? route,
-    _i5.Route<dynamic>? previousRoute,
+    _i7.Route<dynamic>? route,
+    _i7.Route<dynamic>? previousRoute,
   ) =>
       super.noSuchMethod(
         Invocation.method(
@@ -201,8 +232,8 @@ class MockNavigatorObserver extends _i1.Mock implements _i5.NavigatorObserver {
       );
   @override
   void didRemove(
-    _i5.Route<dynamic>? route,
-    _i5.Route<dynamic>? previousRoute,
+    _i7.Route<dynamic>? route,
+    _i7.Route<dynamic>? previousRoute,
   ) =>
       super.noSuchMethod(
         Invocation.method(
@@ -216,8 +247,8 @@ class MockNavigatorObserver extends _i1.Mock implements _i5.NavigatorObserver {
       );
   @override
   void didReplace({
-    _i5.Route<dynamic>? newRoute,
-    _i5.Route<dynamic>? oldRoute,
+    _i7.Route<dynamic>? newRoute,
+    _i7.Route<dynamic>? oldRoute,
   }) =>
       super.noSuchMethod(
         Invocation.method(
@@ -232,8 +263,8 @@ class MockNavigatorObserver extends _i1.Mock implements _i5.NavigatorObserver {
       );
   @override
   void didStartUserGesture(
-    _i5.Route<dynamic>? route,
-    _i5.Route<dynamic>? previousRoute,
+    _i7.Route<dynamic>? route,
+    _i7.Route<dynamic>? previousRoute,
   ) =>
       super.noSuchMethod(
         Invocation.method(

@@ -71,7 +71,13 @@ class _AddPlantFormState extends State<AddPlantForm> {
   }
   _addPlant() {
     if(_formKey.currentState!.validate()){
-      final plant = PlantProfile(
+      if(_profilePicture == null){
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Please take a plant photo.')),
+        );
+        return;
+      }
+      final plant = PlantProfile.create(
         _nameController.text,
         _speciesController.text,
         _locationController.text,

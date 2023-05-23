@@ -15,6 +15,9 @@ class _PlantGalleryPageState extends State<PlantGalleryPage> {
   @override
   Widget build(BuildContext context) {
     final plantViewModel = context.watch<PlantViewModel>();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      plantViewModel.getFirebasePlants();
+    });
     return plantViewModel.numberOfPlants == 0
         ? const Center(child: Text('No plants'))
         : ListView.separated(

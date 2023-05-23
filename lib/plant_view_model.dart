@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
 import 'plant_profile.dart';
+import 'firebase_service.dart';
 import 'dart:convert';
 
 
 class PlantViewModel extends ChangeNotifier {
+  final firebaseService = FirebaseService();
   List<PlantProfile> plants = [];
   List<PlantProfile> catalog = [];
 
-  void addPlant(PlantProfile plant){
-    plants.add(plant);
+  Future<void> getFirebasePlants()async {
+    plants = await firebaseService.getFirebasePlants();
+    notifyListeners();
+  }
+
+  Future<void> addPlant(PlantProfile plant)async {
+    //plants.add(plant);
+    firebaseService.addPlant(plant);
     notifyListeners();
   }
 

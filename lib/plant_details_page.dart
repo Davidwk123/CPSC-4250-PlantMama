@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'plant_profile.dart';
 import 'package:intl/intl.dart';
-//import 'package:provider/provider.dart';
-//import 'plant_view_model.dart';
 
 class PlantDetailPage extends StatelessWidget {
   final PlantProfile plant;
@@ -11,6 +9,41 @@ class PlantDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final plantPath = plant.picture.path;
+
+    bool isLocalImage() {
+      return plant.picture.existsSync();
+    }
+
+    Widget buildLocalImage() {
+      return Image.file(
+        plant.picture,
+        width: 100,
+        height: 100,
+        errorBuilder: (context, error, stackTrace) {
+          return const Icon(
+            Icons.image_not_supported,
+            size: 100,
+            color: Colors.grey,
+          );
+        },
+      );
+    }
+
+    Widget buildNetworkImage() {
+      return Image.network(
+        plantPath,
+        width: 100,
+        height: 100,
+        errorBuilder: (context, error, stackTrace) {
+          return const Icon(
+            Icons.image_not_supported,
+            size: 100,
+            color: Colors.grey,
+          );
+        },
+      );
+    }
     //final plantViewModel = context.watch<PlantViewModel>();
     return Scaffold(
       appBar: AppBar(
@@ -24,18 +57,11 @@ class PlantDetailPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch, // Make column stretch in width
                 children: <Widget>[
-                  Image.network(
-                    plant.picture.path,
-                    width: 100,
-                    height: 100,
-                    errorBuilder: (context, error, stackTrace) {
-                      return const Icon(
-                        Icons.broken_image,
-                        size: 100,
-                        color: Colors.grey,
-                      );
-                    },
-                  ),
+                  if(isLocalImage())...[
+                    buildLocalImage(),
+                  ]else ...[
+                    buildNetworkImage(),
+                  ],
                   const SizedBox(width: 8),
                   Text(plant.species),
                   Text(plant.location),
