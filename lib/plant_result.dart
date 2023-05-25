@@ -55,6 +55,11 @@ class PlantResult extends StatelessWidget{
               itemBuilder: (context, index) => children[index],
               separatorBuilder: (context, index) => const SizedBox(height: 24),
             ),
+            IconButton(
+                onPressed: (){
+                  plantViewModel.removePlant(index);
+                },
+                icon: const Icon(Icons.delete))
           ],
         ),
       ),

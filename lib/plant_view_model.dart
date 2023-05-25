@@ -20,6 +20,11 @@ class PlantViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> removePlant(int index)async {
+    firebaseService.deletePlant(plants[index].id);
+    notifyListeners();
+  }
+
   void addCatalog(List<PlantProfile> catalogPlants){
     catalog = catalogPlants;
     notifyListeners();
