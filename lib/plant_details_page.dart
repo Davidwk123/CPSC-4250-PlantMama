@@ -18,12 +18,12 @@ class PlantDetailPage extends StatelessWidget {
     Widget buildLocalImage() {
       return Image.file(
         plant.picture,
-        width: 100,
-        height: 100,
+        width: 500,
+        height: 500,
         errorBuilder: (context, error, stackTrace) {
           return const Icon(
             Icons.image_not_supported,
-            size: 100,
+            size: 300,
             color: Colors.grey,
           );
         },
@@ -34,12 +34,12 @@ class PlantDetailPage extends StatelessWidget {
       if (plantPath != "Unknown.jpg") {
         return Image.network(
           plantPath,
-          width: 100,
-          height: 100,
+          width: 500,
+          height: 500,
           errorBuilder: (context, error, stackTrace) {
             return const Icon(
               Icons.image_not_supported,
-              size: 100,
+              size: 300,
               color: Colors.grey,
             );
           },
@@ -47,7 +47,7 @@ class PlantDetailPage extends StatelessWidget {
       } else {
         return const Icon(
           Icons.image_not_supported,
-          size: 100,
+          size: 300,
           color: Colors.grey,
         );
       }
