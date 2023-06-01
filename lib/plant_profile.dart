@@ -22,17 +22,22 @@ class PlantProfile {
   }
 
   factory PlantProfile.fromJson(Map<String, dynamic> json){
-    //print(json['sunlight'].join(,));
+    //print(json['image_url']);
     const uuid = Uuid();
     final id = uuid.v4();
+    final commonName = json['common_name'] ?? "Unknown";
+    final scientificName = json['scientific_name'] ?? "Unknown";
+    final bibliography = json['bibliography'] ?? "Unknown";
+    final author = json['author'] ?? "Unknown";
+    final plantImg = json['image_url'] ?? "Unknown.jpg";
     return PlantProfile(
         id,
-        json['common_name'],
-        json['scientific_name'].join(', '),
-        "N/A",
-        json['sunlight'].join(', '),
+        commonName,
+        scientificName,
+        "Bibliography: $bibliography",
+        "Author: $author",
         DateTime(0,0,0),
-        File(json['default_image']['thumbnail'])
+        File(plantImg)
     );
   }
 

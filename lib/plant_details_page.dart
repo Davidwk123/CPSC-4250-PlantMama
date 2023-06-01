@@ -31,18 +31,26 @@ class PlantDetailPage extends StatelessWidget {
     }
 
     Widget buildNetworkImage() {
-      return Image.network(
-        plantPath,
-        width: 100,
-        height: 100,
-        errorBuilder: (context, error, stackTrace) {
-          return const Icon(
-            Icons.image_not_supported,
-            size: 100,
-            color: Colors.grey,
-          );
-        },
-      );
+      if (plantPath != "Unknown.jpg") {
+        return Image.network(
+          plantPath,
+          width: 100,
+          height: 100,
+          errorBuilder: (context, error, stackTrace) {
+            return const Icon(
+              Icons.image_not_supported,
+              size: 100,
+              color: Colors.grey,
+            );
+          },
+        );
+      } else {
+        return const Icon(
+          Icons.image_not_supported,
+          size: 100,
+          color: Colors.grey,
+        );
+      }
     }
     //final plantViewModel = context.watch<PlantViewModel>();
     return Scaffold(
@@ -67,7 +75,8 @@ class PlantDetailPage extends StatelessWidget {
                   Text(plant.location),
                   Text(plant.lighting),
                   // test date 2023-05-06
-                  Text(DateFormat('MMM dd, yyyy hh:mm a').format(plant.plantBought)),// Replace with actual plant attribute
+                  if (plant.plantBought != DateTime(0, 0, 0))
+                    Text(DateFormat('MMM dd, yyyy hh:mm a').format(plant.plantBought)),// Replace with actual plant attribute
                   // Add other plant details here
                 ],
               ),

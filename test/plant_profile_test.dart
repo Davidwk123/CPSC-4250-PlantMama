@@ -25,22 +25,21 @@ void main() {
 
     test('Create PlantProfile from JSON using fromJson factory constructor', () {
       final json = {
-        'common_name': 'Rose',
-        'scientific_name': ['Rosa'],
-        'sunlight': ['Full sunlight'],
-        'default_image': {
-          'thumbnail': 'path/to/rose.jpg',
-        },
+        "author": "L.",
+        "bibliography": "Sp. pl. 2:1188.  1753",
+        "common_name": "coconut palm",
+        "image_url": "path/to/plant.jpg",
+        "scientific_name": "Cocos nucifera",
       };
 
       final plant = PlantProfile.fromJson(json);
 
-      expect(plant.name, 'Rose');
-      expect(plant.species, 'Rosa');
-      expect(plant.location, 'N/A');
-      expect(plant.lighting, 'Full sunlight');
+      expect(plant.name, 'coconut palm');
+      expect(plant.species, 'Cocos nucifera');
+      expect(plant.location, 'Bibliography: Sp. pl. 2:1188.  1753');
+      expect(plant.lighting, 'Author: L.');
       expect(plant.plantBought, DateTime(0, 0, 0));
-      expect(plant.picture.path, 'path/to/rose.jpg');
+      expect(plant.picture.path, 'path/to/plant.jpg');
     });
 
   });

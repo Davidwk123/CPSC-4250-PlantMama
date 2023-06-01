@@ -44,7 +44,7 @@ class PlantViewModel extends ChangeNotifier {
     // parsed.forEach((element) {print(element);});
     //parsed.map((json) => print(json));
     //return [];
-    //print(parsed[0]['default_image']['thumbnail']);
+    //print(parsed);
     return parsed.map((json) => PlantProfile.fromJson(json)).toList();
   }
 

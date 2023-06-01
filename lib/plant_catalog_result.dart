@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:plant_mama/plant_view_model.dart';
 import 'package:provider/provider.dart';
 import 'plant_details_page.dart';
@@ -15,18 +14,26 @@ class PlantCatalogResult extends StatelessWidget {
     List<Widget> children = [
       Row(
         children: [
-          Image.network(
-            plantURL,
-            width: 100,
-            height: 100,
-            errorBuilder: (context, error, stackTrace) {
-              return const Icon(
-                Icons.broken_image,
-                size: 100,
-                color: Colors.grey,
-              );
-            },
-          ),
+          if(plantURL != "Unknown.jpg")...[
+            Image.network(
+              plantURL,
+              width: 100,
+              height: 100,
+              errorBuilder: (context, error, stackTrace) {
+                return const Icon(
+                  Icons.image_not_supported,
+                  size: 100,
+                  color: Colors.grey,
+                );
+              },
+            ),
+          ]else ...[
+            const Icon(
+              Icons.image_not_supported,
+              size: 100,
+              color: Colors.grey,
+            ),
+          ],
           const SizedBox(width: 8), // Add some spacing between the image and text
           Flexible(
             child: Text(
@@ -41,7 +48,6 @@ class PlantCatalogResult extends StatelessWidget {
       Text(plantViewModel.catalog[index].location),
       Text(plantViewModel.catalog[index].lighting),
       // test date 2023-05-06
-      Text(DateFormat('MMM dd, yyyy hh:mm a').format(plantViewModel.catalog[index].plantBought)),
     ];
 
     return GestureDetector(

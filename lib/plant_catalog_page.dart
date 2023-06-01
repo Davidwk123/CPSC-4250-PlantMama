@@ -20,7 +20,9 @@ class _PlantCatalogPageState extends State<PlantCatalogPage> {
 
   _plantSearch() {
     String searchTerm = _nameController.text;
-    plantURL = "https://perenual.com/api/species-list?key=sk-fC7m645ec1f6613b1786&page=1";
+    //https://trefle.io/api/v1/plants?token=OJfbxm-MVyJ4zhDeYXlQdLIjlHvu6BBtMrDMDuOYOwc/search?q=$searchTerm
+    //"https://perenual.com/api/species-list?key=sk-fC7m645ec1f6613b1786&q=$searchTerm"
+    plantURL = "https://trefle.io/api/v1/plants/search?token=OJfbxm-MVyJ4zhDeYXlQdLIjlHvu6BBtMrDMDuOYOwc&q=$searchTerm";
     //print(plantURL);
   }
 
@@ -29,7 +31,7 @@ class _PlantCatalogPageState extends State<PlantCatalogPage> {
       final response = await http.get(Uri.parse(plantURL));
       List<PlantProfile> listCatalog = plantViewModel.plantCatalogFromJson(response.body);
       plantViewModel.addCatalog(listCatalog);
-      //print(listCatalog[0].picture);
+      //print(listCatalog.runtimeType);
       //for (var plant in plantViewModel.catalog){print(plant.name);}
     }catch (e) {return;}
   }
