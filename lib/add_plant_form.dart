@@ -77,6 +77,14 @@ class _AddPlantFormState extends State<AddPlantForm> {
         );
         return;
       }
+      try {
+        DateTime parsedDate = DateTime.parse(_plantBoughtController.text);
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Invalid date format.')),
+        );
+        return;
+      }
       final plant = PlantProfile.create(
         _nameController.text,
         _speciesController.text,

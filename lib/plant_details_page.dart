@@ -76,7 +76,7 @@ class PlantDetailPage extends StatelessWidget {
                   Text(plant.lighting),
                   // test date 2023-05-06
                   if (plant.plantBought != DateTime(0, 0, 0))
-                    Text(DateFormat('MMM dd, yyyy hh:mm a').format(plant.plantBought)),// Replace with actual plant attribute
+                    Text(DateFormat('MMM dd, yyyy').format(plant.plantBought)),// Replace with actual plant attribute
                   // Add other plant details here
                 ],
               ),

@@ -39,7 +39,7 @@ class PlantResult extends StatelessWidget{
       Text(plantViewModel.plants[index].location),
       Text(plantViewModel.plants[index].lighting),
       // test date 2023-05-06
-      Text(DateFormat('MMM dd, yyyy hh:mm a').format(plantViewModel.plants[index].plantBought)),
+      Text(DateFormat('MMM dd, yyyy').format(plantViewModel.plants[index].plantBought)),
     ];
 
     return Card(
