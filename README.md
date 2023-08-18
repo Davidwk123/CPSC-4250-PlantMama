@@ -1,4 +1,5 @@
 # plant_mama
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,8 +10,10 @@
   }
 
   .image-container img {
-    max-width: 50%; /* Adjust the maximum width of the images */
+    width: auto;
     height: auto;
+    max-width: 50%; /* Adjust the maximum width of the images */
+    max-height: 50vh; /* Adjust the maximum height of the images */
   }
 </style>
 </head>
@@ -23,6 +26,8 @@
 
 </body>
 </html>
+
+
 
 App that gives users the ability to document their plants with the addition of an API service for providing plant information
 
