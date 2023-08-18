@@ -6,14 +6,13 @@
 <style>
   .image-container {
     display: flex;
-    gap: 20px; /* Adjust the gap between images */
+    align-items: center;
   }
 
   .image-container img {
     width: auto;
+    max-width: 50%;
     height: auto;
-    max-width: 50%; /* Adjust the maximum width of the images */
-    max-height: 50vh; /* Adjust the maximum height of the images */
   }
 </style>
 </head>
